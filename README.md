@@ -34,6 +34,44 @@ Si le port `3130` est deja utilise:
 PORT=3131 npm run dev
 ```
 
+## Initialisation obligatoire
+
+Avant de creer un programme ou de planifier une semaine, l'assistant doit faire une initialisation claire du profil. Il doit demander les metriques obligatoires et ne jamais inventer les donnees manquantes.
+
+Metriques et informations a recuperer:
+
+- age, sexe, taille, poids, bodyfat estime
+- objectif principal, objectif secondaire et objectifs de maintien
+- periode actuelle et objectif de periode
+- sport pratique, niveau, poste, frequence et saison
+- historique sportif, blessures, douleurs et limites de mobilite
+- sommeil, fatigue, recuperation et contraintes reelles
+- materiel disponible selon les periodes
+- niveau running et objectif cardio
+- habitudes nutritionnelles, contraintes et preferences
+
+Si une donnee importante manque, l'assistant doit la demander avant de construire un plan precis. En cas de contradiction, la donnee la plus recente est prioritaire.
+
+## Google Calendar obligatoire
+
+Pour programmer une semaine, il faut utiliser Google Calendar.
+
+Le projet est concu pour fonctionner avec un acces Google Calendar via:
+
+- plugin Google Calendar
+- serveur MCP Google Calendar
+- connecteur equivalent disponible dans l'environnement
+
+Avant de planifier, l'assistant doit lire Google Calendar pour detecter les disponibilites, les contraintes, les conflits et les notes des evenements. Il doit ensuite proposer le planning et attendre validation avant d'ajouter ou modifier des blocs dans l'agenda.
+
+Google Calendar est utilise pour:
+
+- analyser les disponibilites reelles
+- planifier les seances sport, mobilite, etirements et running
+- eviter les surcharges
+- deplacer ou adapter les blocs si l'agenda change
+- prendre en compte les evenements comme `Faire courses` pour generer un rappel de courses utile
+
 ## Personnaliser le coach
 
 Les fichiers fournis sont des exemples anonymes. Pour utiliser le coach avec votre propre profil:
@@ -42,7 +80,8 @@ Les fichiers fournis sont des exemples anonymes. Pour utiliser le coach avec vot
 2. Ajustez `data/nutrition_targets.json`.
 3. Remplacez ou videz les exemples CSV dans `data/`.
 4. Ajoutez vos seances dans `data/planned_sessions.json`, ou laissez l'assistant IA les generer.
-5. Lancez la webapp et enregistrez vos retours apres chaque seance.
+5. Donnez acces a Google Calendar via plugin ou MCP si vous voulez planifier les semaines automatiquement.
+6. Lancez la webapp et enregistrez vos retours apres chaque seance.
 
 Le fichier le plus important est `data/profile.json`. Il contient l'objectif actuel, la periode actuelle, les contraintes, le sport principal, les habitudes et le niveau de depart.
 
@@ -83,8 +122,9 @@ Avant de programmer une semaine ou de conseiller une seance, l'assistant doit re
 2. `data/weekly_summaries.json`
 3. les historiques pertinents dans `data/`
 4. les regles dans `docs/`
+5. Google Calendar via le plugin ou le MCP Google Calendar
 
-La logique centrale est simple: ne pas proposer de programme generique. Toute decision doit tenir compte de l'objectif actuel, de la periode, de la fatigue, des douleurs, de l'historique et des contraintes reelles.
+La logique centrale est simple: ne pas proposer de programme generique. Toute decision doit tenir compte de l'objectif actuel, de la periode, de la fatigue, des douleurs, de l'historique, de l'agenda et des contraintes reelles.
 
 ## Vie privee
 
