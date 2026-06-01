@@ -1,0 +1,34 @@
+[
+  {
+    "week_id": "2026-W02",
+    "period": "2026-01-05 to 2026-01-11",
+    "updated_at": "2026-01-05",
+    "current_objective": "Lancer une routine durable avec intensite controlee.",
+    "status": "example",
+    "known_done": [
+      {
+        "date": "2026-01-05",
+        "type": "strength",
+        "summary": "Seance full-body exemple faite avec RPE 7 et aucune douleur."
+      }
+    ],
+    "known_missed_or_changed": [],
+    "planned_remaining": [
+      {
+        "date": "2026-01-06",
+        "type": "mobility",
+        "summary": "Mobilite recuperation prevue."
+      }
+    ],
+    "coaching_signals": [
+      "Conserver une progression prudente tant que le profil reel n'est pas renseigne.",
+      "Demander les douleurs, le sommeil et les disponibilites avant d'augmenter le volume."
+    ],
+    "missing_or_to_confirm": [
+      "Objectif prioritaire",
+      "Disponibilites hebdomadaires",
+      "Contraintes ou blessures",
+      "Materiel disponible"
+    ]
+  }
+]

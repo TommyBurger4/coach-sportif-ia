@@ -1,0 +1,30 @@
+{
+  "objective": "Objectif nutritionnel de depart a personnaliser.",
+  "updated_at": "2026-01-01",
+  "source": "Exemple generique base sur un profil fictif.",
+  "rules": [
+    "Ajuster apres 2 semaines selon tendance du poids, energie, faim et performance",
+    "Jour entrainement: prioriser les glucides autour de la seance",
+    "Jour repos: conserver les proteines et ajuster surtout les glucides"
+  ],
+  "targets": [
+    {
+      "id": "training_day",
+      "label": "Jour entrainement",
+      "kcal": 2400,
+      "protein_g": 140,
+      "carbs_g": 300,
+      "fat_g": 65,
+      "use_when": "Musculation, sport, course ou grosse journee active"
+    },
+    {
+      "id": "rest_day",
+      "label": "Jour repos / mobilite",
+      "kcal": 2200,
+      "protein_g": 140,
+      "carbs_g": 240,
+      "fat_g": 70,
+      "use_when": "Repos, etirements seuls ou mobilite legere"
+    }
+  ]
+}

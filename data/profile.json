@@ -1,0 +1,133 @@
+{
+  "status": "template",
+  "last_updated": "2026-01-01",
+  "current_objective": "Ameliorer la composition corporelle, la force utile, l'endurance et la regularite d'entrainement.",
+  "current_period": "Periode de base a personnaliser.",
+  "period_goal": "Construire une routine durable avant d'augmenter l'intensite.",
+  "known_data": {
+    "profile_physical": {
+      "age": 30,
+      "sex": "unspecified",
+      "height_cm": 175,
+      "weight_kg": 70,
+      "estimated_bodyfat_percent": 18,
+      "sleep_average_hours": "7-8",
+      "fatigue_level_current": "a renseigner",
+      "chronic_constraints": [],
+      "chronic_pain_current": "aucune donnee",
+      "mobility_limits_known": "a evaluer",
+      "sport": "sport principal a renseigner",
+      "position": "",
+      "sport_history": {
+        "sport_years": 0,
+        "strength_training_years": "a renseigner",
+        "running_status": "a renseigner"
+      },
+      "levels": {
+        "sport": "a renseigner",
+        "strength_training": "debutant",
+        "running": "a renseigner"
+      },
+      "past_injuries": []
+    },
+    "goals": {
+      "long_term": [
+        "etre plus en forme",
+        "progresser durablement",
+        "reduire le risque de blessure"
+      ],
+      "phase_order": [
+        "Phase 1: routine et technique",
+        "Phase 2: progression force/endurance",
+        "Phase 3: specialisation performance"
+      ],
+      "current_phase": "Phase 1"
+    },
+    "calendar_periods": [
+      {
+        "name": "Periode de depart",
+        "start_date": "2026-01-01",
+        "end_date": null,
+        "context": "A personnaliser selon l'agenda, la saison sportive et les contraintes.",
+        "sport_sessions_per_week": 2,
+        "notes": "Utiliser un calendrier externe seulement si l'utilisateur le demande."
+      }
+    ],
+    "equipment": {
+      "gym_access": true,
+      "home_equipment": [],
+      "training_time_preference": "flexible"
+    },
+    "nutrition": {
+      "meals_per_day": 3,
+      "tracks_calories": false,
+      "typical_day": {
+        "breakfast": "",
+        "lunch": "",
+        "dinner": "",
+        "snacks": []
+      },
+      "allergies_or_restrictions": "",
+      "liked_foods": [],
+      "foods_to_avoid": [],
+      "drinks": ["eau"],
+      "macro_tracking": {
+        "open_to_macro_targets": true,
+        "has_food_scale": false,
+        "calorie_tracking_initial_strategy": "commencer simple puis affiner"
+      },
+      "kitchen_equipment": [],
+      "shopping_budget": "a renseigner"
+    },
+    "running": {
+      "current_frequency": "a renseigner",
+      "reference_performance": "",
+      "usual_surface": "",
+      "pain_while_running": false,
+      "long_term_goal": ""
+    },
+    "mobility_recovery": {
+      "mobility_preference": "a renseigner",
+      "evening_stretching": "a renseigner"
+    },
+    "injury_risk_notes": {},
+    "coaching_preferences": {
+      "strictness": "equilibre",
+      "motivation": "a renseigner"
+    },
+    "body_metrics_tracking": {
+      "preferred_weigh_in_frequency": "1-2 fois par semaine"
+    },
+    "supplements": {
+      "current": [],
+      "interested_in": []
+    },
+    "sleep_schedule": {
+      "typical_bedtime": "",
+      "typical_wake_time": "",
+      "typical_duration_hours": null
+    },
+    "session_preferences": {
+      "max_strength_session_duration_min": 60,
+      "include_warmup_min": 10,
+      "cooldown_condition": "si recuperation OK",
+      "calendar_usage": "utiliser seulement quand l'utilisateur demande de planifier"
+    },
+    "current_exercises": {
+      "lower": [],
+      "upper": [],
+      "core": [],
+      "conditioning": []
+    }
+  },
+  "missing_data": {
+    "profile_physical": ["age", "taille", "poids", "contraintes", "niveau"],
+    "goals": ["objectif prioritaire"],
+    "calendar_periods": ["disponibilites"],
+    "equipment": ["materiel disponible"],
+    "nutrition": ["habitudes", "contraintes", "budget"],
+    "running": ["niveau actuel"],
+    "preferences": ["style de coaching"]
+  },
+  "assumptions": []
+}

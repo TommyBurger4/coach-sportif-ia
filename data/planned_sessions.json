@@ -1,0 +1,67 @@
+[
+  {
+    "id": "example-2026-01-05-strength",
+    "date": "2026-01-05",
+    "title": "Seance force full-body",
+    "type": "strength",
+    "status": "planned",
+    "focus": "Technique, reprise progressive, effort controle.",
+    "notes": "Adapter les charges selon le niveau reel.",
+    "planned_duration_min": 60,
+    "warmup": "10 min cardio doux + mobilite hanches/epaules",
+    "incline_walk": "10 min retour au calme si energie OK",
+    "exercises": [
+      {
+        "name": "Squat goblet",
+        "sets": 3,
+        "reps": "8-10",
+        "load_kg": 16,
+        "rpe": "7"
+      },
+      {
+        "name": "Rowing poulie",
+        "sets": 3,
+        "reps": "10-12",
+        "load_kg": 35,
+        "rpe": "7"
+      },
+      {
+        "name": "Developpe halteres",
+        "sets": 3,
+        "reps": "8-10",
+        "load_kg": 14,
+        "rpe": "7"
+      }
+    ]
+  },
+  {
+    "id": "example-2026-01-06-mobility",
+    "date": "2026-01-06",
+    "title": "Mobilite recuperation",
+    "type": "mobility",
+    "status": "planned",
+    "focus": "Recuperation active et amplitude confortable.",
+    "notes": "Rester facile, aucune douleur forcee.",
+    "planned_duration_min": 30,
+    "exercises": [
+      {
+        "name": "Respiration + decompression",
+        "sets": 1,
+        "reps": "5 min",
+        "rpe": "1-2"
+      },
+      {
+        "name": "Mobilite hanches",
+        "sets": 2,
+        "reps": "8/cote",
+        "rpe": "2"
+      },
+      {
+        "name": "Mobilite epaules",
+        "sets": 2,
+        "reps": "10",
+        "rpe": "2"
+      }
+    ]
+  }
+]

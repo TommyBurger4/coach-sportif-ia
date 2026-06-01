@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coach Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark" data-icon="activity"></span>
+        <div>
+          <strong>Coach Dashboard</strong>
+          <small>Performance sportive</small>
+        </div>
+      </div>
+      <nav>
+        <a href="#dashboard" class="active" data-view-link="dashboard"><span data-icon="layout"></span>Accueil</a>
+        <a href="#week" data-view-link="week"><span data-icon="calendar"></span>Semaine</a>
+        <a href="#log" data-view-link="log"><span data-icon="clipboard"></span>Saisie</a>
+        <a href="#progress" data-view-link="progress"><span data-icon="trend"></span>Progression</a>
+        <a href="#nutrition" data-view-link="nutrition"><span data-icon="utensils"></span>Nutrition</a>
+        <a href="#fridge" data-view-link="fridge"><span data-icon="fridge"></span>Frigo</a>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <h1 id="viewTitle">Accueil</h1>
+          <p id="phaseLine">Chargement du profil...</p>
+        </div>
+        <button id="refreshBtn" type="button"><span data-icon="refresh"></span>Rafraîchir</button>
+      </header>
+      <div id="syncBanner" class="sync-banner" hidden></div>
+
+      <section id="dashboard" class="section is-active">
+        <div class="metric-grid">
+          <article class="metric">
+            <span><span data-icon="scale"></span>Poids</span>
+            <strong id="weightMetric">-</strong>
+            <small>Dernière mesure</small>
+          </article>
+          <article class="metric">
+            <span><span data-icon="target"></span>Bodyfat</span>
+            <strong id="bodyfatMetric">-</strong>
+            <small>Dernière estimation</small>
+          </article>
+          <article class="metric">
+            <span><span data-icon="calendar-check"></span>Séances semaine</span>
+            <strong id="weekMetric">-</strong>
+            <small>Prévu / fait</small>
+          </article>
+          <article class="metric">
+            <span><span data-icon="shield"></span>Douleur</span>
+            <strong id="kneeMetric">-</strong>
+            <small>Dernier retour</small>
+          </article>
+        </div>
+        <article class="panel objective-panel">
+          <span class="home-icon"><span data-icon="target"></span></span>
+          <div>
+            <h2>Objectif actuel</h2>
+            <p id="objectiveText">Chargement...</p>
+            <div id="objectiveFacts" class="objective-facts"></div>
+          </div>
+        </article>
+        <div class="chart-grid home-charts">
+          <article class="panel">
+            <h3>Poids</h3>
+            <canvas id="homeWeightChart" width="600" height="260"></canvas>
+          </article>
+          <article class="panel">
+            <h3>Charges par exercice</h3>
+            <select id="homeExerciseFilter"></select>
+            <canvas id="homeStrengthChart" width="600" height="260"></canvas>
+          </article>
+        </div>
+      </section>
+
+      <section id="week" class="section" hidden>
+        <div class="section-head">
+          <div>
+            <h2>Semaine prévue</h2>
+            <p>Pour une séance faite, ouvre le retour et enregistre les données. Le statut passera ensuite en faite.</p>
+          </div>
+          <div class="week-picker">
+            <select id="weekSelect" aria-label="Choisir une semaine"></select>
+            <button id="currentWeekBtn" type="button"><span data-icon="calendar-check"></span>Semaine actuelle</button>
+          </div>
+        </div>
+        <div id="plannedList" class="session-list"></div>
+        <div class="section-head recovery-head">
+          <h2>Récupération du soir</h2>
+          <p>Coche tes étirements chaque soir. La mobilité peut aussi être validée directement ici.</p>
+        </div>
+        <div id="recoveryList" class="recovery-list"></div>
+      </section>
+
+      <section id="log" class="section two-col" hidden>
+        <div>
+          <div class="section-head">
+            <h2>Retour séance</h2>
+            <p>Saisie rapide après la séance. Ça alimente les CSV que je relirai.</p>
+          </div>
+          <form id="workoutForm" class="panel form-grid">
+            <div id="workoutFormState" class="form-state full" hidden></div>
+            <label>Séance prévue
+              <select name="planned_session_id" id="plannedSelect"></select>
+            </label>
+            <label>Date
+              <input name="date" type="date" required />
+            </label>
+            <label>Type
+              <select name="session_type">
+                <option value="strength">Musculation</option>
+                <option value="mobility">Mobilité</option>
+                <option value="sport">Sport principal</option>
+                <option value="running">Course</option>
+                <option value="recovery">Récupération</option>
+              </select>
+            </label>
+            <label>Durée totale (min)
+              <input name="duration_min" type="number" min="0" step="5" />
+            </label>
+            <label>RPE global /10
+              <input name="rpe_global" type="number" min="1" max="10" step="0.5" />
+            </label>
+            <label>Énergie /10
+              <input name="energy_1_10" type="number" min="1" max="10" />
+            </label>
+            <label>Douleur / zone sensible
+              <input name="pain" placeholder="OK, sensible, douleur..." />
+            </label>
+            <div class="full checklist-row">
+              <label class="check-line">
+                <input name="warmup_done" type="checkbox" />
+                Échauffement fait
+              </label>
+              <label class="check-line">
+                <input name="incline_walk_done" type="checkbox" />
+                Marche inclinée faite
+              </label>
+            </div>
+            <label class="full">Notes
+              <textarea name="notes" rows="3" placeholder="Marche inclinée, sommeil, ressenti, changements..."></textarea>
+            </label>
+            <div class="full">
+              <div class="inline-head">
+                <h3>Exercices</h3>
+                <button type="button" id="addExerciseBtn"><span data-icon="plus"></span>Ajouter</button>
+              </div>
+              <div id="exerciseRows" class="exercise-rows"></div>
+            </div>
+            <button id="workoutSubmitBtn" class="primary full" type="submit"><span data-icon="save"></span>Enregistrer le retour</button>
+          </form>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <h2>Mesures rapides</h2>
+            <p>Poids, repas et course quand tu veux enrichir les données.</p>
+          </div>
+          <form id="bodyForm" class="panel compact-form">
+            <h3>Poids / bodyfat</h3>
+            <input name="date" type="date" required />
+            <input name="weight_kg" type="number" step="0.1" placeholder="Poids kg" />
+            <input name="estimated_bodyfat_percent" type="number" step="0.1" placeholder="Bodyfat %" />
+            <input name="notes" placeholder="Notes" />
+            <button type="submit"><span data-icon="plus"></span>Ajouter mesure</button>
+          </form>
+
+          <form id="nutritionForm" class="panel compact-form">
+            <h3>Nutrition</h3>
+            <input name="date" type="date" required />
+            <input name="meal_time" placeholder="Petit-déj, midi..." />
+            <input name="meal_description" placeholder="Repas" />
+            <input name="calories" type="number" placeholder="Calories" />
+            <input name="protein_g" type="number" placeholder="Protéines g" />
+            <input name="carbs_g" type="number" placeholder="Glucides g" />
+            <input name="fat_g" type="number" placeholder="Lipides g" />
+            <input name="notes" placeholder="Notes" />
+            <button type="submit"><span data-icon="plus"></span>Ajouter repas</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="progress" class="section" hidden>
+        <div class="section-head">
+          <h2>Progression</h2>
+          <p>Vue rapide sur les charges, le poids, le running et les retours.</p>
+        </div>
+        <div class="chart-grid">
+          <article class="panel">
+            <h3>Poids</h3>
+            <canvas id="weightChart" width="600" height="260"></canvas>
+          </article>
+          <article class="panel">
+            <h3>Charges par exercice</h3>
+            <select id="exerciseFilter"></select>
+            <canvas id="strengthChart" width="600" height="260"></canvas>
+          </article>
+        </div>
+        <div class="panel table-wrap">
+          <h3>Dernières séances</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>RPE</th>
+                <th>Énergie</th>
+                <th>Douleur</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="workoutTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="nutrition" class="section" hidden>
+        <div class="section-head">
+          <h2>Nutrition</h2>
+          <p>Cibles de sèche, repas prévus et suivi réel de ce que tu manges.</p>
+        </div>
+        <div id="macroTargets" class="target-grid"></div>
+        <div class="panel table-wrap meal-plan-panel">
+          <h3>Repas prévus</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Repas</th>
+                <th>Plat</th>
+                <th>Macros</th>
+                <th>Tupperware</th>
+                <th>Statut</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="mealPlanTable"></tbody>
+          </table>
+        </div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Repas</th>
+                <th>Description</th>
+                <th>Calories</th>
+                <th>Prot.</th>
+                <th>Gluc.</th>
+                <th>Lip.</th>
+              </tr>
+            </thead>
+            <tbody id="nutritionTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="fridge" class="section" hidden>
+        <div class="section-head">
+          <h2>Frigo / placards</h2>
+          <p>Ajoute seulement aliment, quantité et unité. Les macros sont estimées avec des moyennes.</p>
+        </div>
+        <div class="two-col">
+          <form id="fridgeForm" class="panel form-grid">
+            <label>Aliment
+              <input name="name" placeholder="Poulet, lait, riz..." required />
+            </label>
+            <label>Quantité
+              <input name="quantity" type="number" min="0" step="0.1" required />
+            </label>
+            <label>Unité
+              <select name="unit">
+                <option value="g">g</option>
+                <option value="kg">kg</option>
+                <option value="ml">ml</option>
+                <option value="L">L</option>
+                <option value="piece">pièce</option>
+                <option value="portion">portion</option>
+                <option value="paquet">paquet</option>
+                <option value="pot">pot</option>
+                <option value="boite">boîte</option>
+              </select>
+            </label>
+            <label>Date limite
+              <input name="expires_at" type="date" />
+            </label>
+            <label class="check-line full">
+              <input name="use_first" type="checkbox" />
+              À utiliser vite
+            </label>
+            <button class="primary full" type="submit"><span data-icon="plus"></span>Ajouter au frigo</button>
+          </form>
+
+          <article class="panel fridge-summary">
+            <h3>Stock estimé</h3>
+            <div class="macro-grid">
+              <span><strong id="fridgeCalories">0</strong><small>kcal</small></span>
+              <span><strong id="fridgeProtein">0</strong><small>prot.</small></span>
+              <span><strong id="fridgeCarbs">0</strong><small>gluc.</small></span>
+              <span><strong id="fridgeFat">0</strong><small>lip.</small></span>
+            </div>
+            <p>Ces valeurs servent à proposer des repas cohérents, pas à faire une comptabilité parfaite du placard.</p>
+          </article>
+        </div>
+
+        <div class="panel table-wrap">
+          <h3>Aliments disponibles</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Aliment</th>
+                <th>Quantité</th>
+                <th>Unité</th>
+                <th>Catégorie</th>
+                <th>Base</th>
+                <th>Macros stock</th>
+                <th>Priorité</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="fridgeTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+    <script src="/app.js?v=saved-return-button" type="module"></script>
+  </body>
+</html>

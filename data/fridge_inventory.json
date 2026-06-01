@@ -1,0 +1,24 @@
+{
+  "last_updated": "2026-01-01T00:00:00.000Z",
+  "items": [
+    {
+      "id": "example-rice",
+      "name": "riz",
+      "quantity": 500,
+      "unit": "g",
+      "category": "glucide",
+      "unit_basis": "100g",
+      "calories": 360,
+      "protein_g": 7,
+      "carbs_g": 78,
+      "fat_g": 1,
+      "expires_at": "",
+      "use_first": false,
+      "source": "average",
+      "created_at": "2026-01-01T00:00:00.000Z",
+      "updated_at": "2026-01-01T00:00:00.000Z"
+    }
+  ],
+  "shopping_preferences": [],
+  "waste_watch": []
+}
